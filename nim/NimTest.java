@@ -1,10 +1,13 @@
 package jeux.nim;
 
 import java.util.List;
+
+import jeux.AlphaBetaDepth;
 import jeux.nim.Nim;
 import jeux.MinimaxSearch;
 import jeux.MinimaxDepthSearch;
 import jeux.AlphaBeta;
+import jeux.AlphaBetaDepth;
 
 public class NimTest {
 
@@ -17,6 +20,8 @@ public class NimTest {
                 MinimaxDepthSearch.createFor(game);
         AlphaBeta<Integer, Integer> alphaBeta =
                 AlphaBeta.createFor(game);
+        AlphaBetaDepth<Integer, Integer> alphaBetaDepth =
+                AlphaBetaDepth.createFor(game);
 	
         state = game.getInitialState();
 	    int action = -1;
@@ -45,6 +50,14 @@ public class NimTest {
         //
         action = alphaBeta.makeDecision(state);
         System.out.println("Metrics for AlphaBeta : " + alphaBeta.getMetrics());
+        System.out.println("Chosen action is " + action);
+
+        /* AlphaBetaDepth */
+        System.out.println("\n\nAlphaBetaDepth:\n");
+        System.out.println("Machine player, what is your action?");
+        //
+        action = alphaBetaDepth.makeDecision(state);
+        System.out.println("Metrics for AlphaBeta : " + alphaBetaDepth.getMetrics());
         System.out.println("Chosen action is " + action);
    }
 }
