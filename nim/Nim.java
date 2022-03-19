@@ -50,7 +50,7 @@ class Nim implements Game<Integer, Integer> {
     @Override
     public double getUtility(Integer state, boolean player) {
         if (isTerminal(state)){
-            return (player)?-1:1;
+            return (player)?1:-1;
         }
         else {
             return 0;
