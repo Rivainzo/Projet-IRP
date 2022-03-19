@@ -1,5 +1,6 @@
 package jeux.nim;
 
+import jeux.MinimaxDepthSearch;
 import jeux.MinimaxSearch;
 
 import java.util.*;
@@ -7,7 +8,7 @@ import java.util.*;
 public class NimTestDeux {
 
     public static void main(String[] args) {
-        Nim game = new Nim(5, 10);
+        Nim game = new Nim(20, 3);
         System.out.println("Nombre d'allumettes initial : " + 20 + "\n");
         Scanner scanner = new Scanner(System.in);
         int state;
@@ -15,8 +16,10 @@ public class NimTestDeux {
         String commencer;
         boolean premier_joueur = true;
         List<Integer> myArrayList = new ArrayList<Integer>();
-        MinimaxSearch<Integer, Integer> minimaxSearch =
-                MinimaxSearch.createFor(game);
+        /*MinimaxSearch<Integer, Integer> minimaxSearch =
+                MinimaxSearch.createFor(game);*/
+        MinimaxDepthSearch<Integer, Integer> minimaxDepthSearch =
+                MinimaxDepthSearch.createFor(game);
 
         System.out.println("Voulez-vous commencer la partie ? (Oui / Non)");
         commencer = scanner.nextLine();
@@ -32,7 +35,7 @@ public class NimTestDeux {
 
         if (!premier_joueur) {
             System.out.println("Machine player, what is your action?");
-            action = minimaxSearch.makeDecision(state);
+            action = minimaxDepthSearch.makeDecision(state);
             System.out.println("Chosen action is " + action);
             state -= action;
             if (game.isTerminal(state)){
@@ -62,7 +65,7 @@ public class NimTestDeux {
             else {
                 System.out.println("Nombre d'allumettes restantes : " + state + "\n");
                 System.out.println("Machine player, what is your action?");
-                action = minimaxSearch.makeDecision(state);
+                action = minimaxDepthSearch.makeDecision(state);
                 System.out.println("Chosen action is " + action);
                 state -= action;
                 if (game.isTerminal(state)){
