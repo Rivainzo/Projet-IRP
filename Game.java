@@ -14,5 +14,5 @@ public interface Game<STATE, ACTION> {
 
 	double getUtility(STATE state, boolean player);
 
-        int getDepth();
+	int getDepth();
 }
