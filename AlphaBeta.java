@@ -34,9 +34,12 @@ public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
         if (game.isTerminal(state))
             return game.getUtility(state, player);
         double value = Double.NEGATIVE_INFINITY;
-        for (ACTION action : game.getActions(state))
+        for (ACTION action : game.getActions(state)) {
             value = Math.max(value,
-                    minValue(game.getResult(state, action),!player));
+                    minValue(game.getResult(state, action), !player));
+            if (value > getBeta()) return value;
+            _alpha = Math.max(_alpha,value);
+        }
         return value;
     }
 
@@ -44,12 +47,16 @@ public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
         // calcule une valeur d'utilité pour un noeud min
         assert (!(player));
         expandedNodes++;
-        if (game.isTerminal(state)){
-            return game.getUtility(state, player);}
+        if (game.isTerminal(state)) {
+            return game.getUtility(state, player);
+        }
         double value = Double.POSITIVE_INFINITY;
-        for (ACTION action : game.getActions(state))
+        for (ACTION action : game.getActions(state)) {
             value = Math.min(value,
-                    maxValue(game.getResult(state, action),!player));
+                    maxValue(game.getResult(state, action), !player));
+            if (value < getAlpha()) return value;
+            _beta = Math.min(_beta, value);
+        }
         return value;
     }
 
@@ -58,7 +65,20 @@ public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
         return null;
     }
 
-
+    /*public ACTION makeDecision(STATE state) {
+        expandedNodes = 0;
+        ACTION result = null ;
+        double resultValue = Double.NEGATIVE_INFINITY;
+        boolean p = true;
+        for (ACTION action : game.getActions(state)) {
+            double value = minValue(game.getResult(state, action), !p);
+            if (value > resultValue) {
+                result = action;
+                resultValue = value;
+            }
+        }
+        return result;
+    }*/
 
 
 
