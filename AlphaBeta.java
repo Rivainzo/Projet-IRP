@@ -61,11 +61,11 @@ public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
     }
 
 
-    public ACTION makeDecision(STATE state){
+    /*public ACTION makeDecision(STATE state){
         return null;
-    }
+    }*/
 
-    /*public ACTION makeDecision(STATE state) {
+    public ACTION makeDecision(STATE state) {
         expandedNodes = 0;
         ACTION result = null ;
         double resultValue = Double.NEGATIVE_INFINITY;
@@ -78,7 +78,7 @@ public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
             }
         }
         return result;
-    }*/
+    }
 
 
 
