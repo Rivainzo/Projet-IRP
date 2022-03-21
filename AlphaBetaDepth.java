@@ -9,7 +9,7 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
     public static <STATE, ACTION> AlphaBetaDepth<STATE, ACTION>
     createFor(Game<STATE, ACTION> game) {
-        return new AlphaBetaDepth<>(game);
+        return new AlphaBetaDepth<STATE, ACTION>(game);
     }
 
     public AlphaBetaDepth(Game<STATE, ACTION> game) {

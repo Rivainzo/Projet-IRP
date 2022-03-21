@@ -6,14 +6,13 @@ import java.util.*;
 
 class Nim implements Game<Integer, Integer> {
     private int _init_state;
-    private int _state;
     private int _depth;
 
     public Nim(int state, int depth) {
-        _state = state;
         _init_state = state;
         _depth   = depth;
     }
+
     @Override
     public Integer getInitialState() {
         return _init_state;
