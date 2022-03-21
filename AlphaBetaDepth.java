@@ -45,7 +45,7 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
         // calcule une valeur d'utilité pour un noeud min
         assert (!(player));
         expandedNodes++;
-        if (game.isTerminal(state)) {
+        if (game.isTerminal(state) || depth <= 0) {
             return game.getUtility(state, player);
         }
         double value = Double.POSITIVE_INFINITY;

@@ -23,11 +23,13 @@ public class MinimaxSearch<STATE, ACTION> implements
 		ACTION result = null ;
 		double resultValue = Double.NEGATIVE_INFINITY;
 		boolean p = true;
+		System.out.println("TEST " + state);
 		for (ACTION action : game.getActions(state)) {
 	        double value = minValue(game.getResult(state, action), !p);
 		 if (value > resultValue) {
 		   result = action;
 		   resultValue = value;
+		   System.out.println("result value " + resultValue);
 		 }
 		}
 		return result;
@@ -51,11 +53,14 @@ public class MinimaxSearch<STATE, ACTION> implements
 	        assert (!(player));
 	        expandedNodes++;
 		if (game.isTerminal(state)){
+			System.out.println("TEST minValue " + game.getUtility(state, player));
 		    return game.getUtility(state, player);}
 		double value = Double.POSITIVE_INFINITY;
-		for (ACTION action : game.getActions(state))
+		for (ACTION action : game.getActions(state)) {
+			//System.out.println("TEST minValue " + game.getResult(state, action));
 			value = Math.min(value,
-		       	maxValue(game.getResult(state, action),!player));
+					maxValue(game.getResult(state, action), !player));
+		}
 		return value;
 	}
 
