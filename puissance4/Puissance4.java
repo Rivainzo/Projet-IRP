@@ -23,8 +23,8 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
         _init_state = new Paire<Integer[][], Boolean>(grille, premier_joueur);
     }
 
-    int get_nb_lignes() {return _nb_lignes;}
-    int get_nb_colonnes() {return _nb_colonnes;}
+    public int get_nb_lignes() {return _nb_lignes;}
+    public int get_nb_colonnes() {return _nb_colonnes;}
 
     @Override
     public Paire<Integer[][], Boolean> getInitialState() {
@@ -83,7 +83,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
         return res;
     }
 
-    private boolean victoire(Integer[][] grille, boolean joueur, int i, int j) {
+    public boolean victoire(Integer[][] grille, boolean joueur, int i, int j) {
         int tmp = (joueur) ? 1:-1;
         if (grille[i][j] == tmp)
         {
@@ -175,6 +175,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
                 for (int j = 0; j < get_nb_colonnes(); j++) {
                     if (victoire(state.get_g(), player, i,j)) return Double.POSITIVE_INFINITY; // Le joueur gagne
                     if (victoire(state.get_g(), !player, i,j)) return Double.NEGATIVE_INFINITY; // L'adversaire gagne
+                    //if (victoire(state.get_g(), !player, i,j)) return -100; // L'adversaire gagne
                 }
             }
             return 0; // Cas d'égalité
@@ -193,7 +194,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             double utilite = 0;
             for (int i = 0; i < get_nb_lignes(); i++) {
                 for (int j = 0; j < get_nb_colonnes(); j++) {
-                    utilite += -state.get_g()[i][j] * Utility_aux(i,j);
+                    utilite += state.get_g()[i][j] * Utility_aux(i,j);
                 }
             }
 
@@ -206,12 +207,27 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             }*/
 
             //System.out.println("TEST GetUtility " + utilite);
-            return utilite;
+            return -utilite;
         }
     }
 
     @Override
     public int getDepth() {
         return _depth;
+    }
+
+    public void AffichageState(Paire<Integer[][], Boolean> state) {
+        for (int i = get_nb_lignes()-1; i >= 0; i-=1) {
+            System.out.println("+---".repeat(get_nb_colonnes()) + "+");
+            //System.out.println("|   ".repeat(get_nb_colonnes()) + "|");
+            for (int j = 0; j < get_nb_colonnes(); j++) {
+                String joueur = (state.get_g()[i][j] > 0) ? "x" : "o";
+                System.out.print("| " + ((state.get_g()[i][j] == 0) ? " " : joueur) + " ");
+            }
+            System.out.println("|");
+            //System.out.println("|   ".repeat(get_nb_colonnes()) + "|");
+        }
+        System.out.println("+---".repeat(get_nb_colonnes()) + "+\n");
+        System.out.println("Au tour " + ((state.get_d()) ? "du joueur" : "de l'ordinateur") + ".");
     }
 }
