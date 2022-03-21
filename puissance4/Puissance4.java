@@ -169,27 +169,16 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
 
     @Override
     public double getUtility(Paire<Integer[][], Boolean> state, boolean player) {
-        //System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS " + isTerminal(state));
         if (isTerminal(state)){
             for (int i = 0; i < get_nb_lignes(); i++) {
                 for (int j = 0; j < get_nb_colonnes(); j++) {
                     if (victoire(state.get_g(), player, i,j)) return Double.POSITIVE_INFINITY; // Le joueur gagne
                     if (victoire(state.get_g(), !player, i,j)) return Double.NEGATIVE_INFINITY; // L'adversaire gagne
-                    //if (victoire(state.get_g(), !player, i,j)) return -100; // L'adversaire gagne
                 }
             }
             return 0; // Cas d'égalité
         }
         else {
-
-            /*System.out.println("----------------------------------------");
-            for (int i = 0; i < get_nb_lignes(); i++) {
-                for (int j = 0; j < get_nb_colonnes(); j++) {
-                    System.out.print(((state.get_g()[i][j] >= 0) ? " " : "") + state.get_g()[i][j] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();*/
 
             double utilite = 0;
             for (int i = 0; i < get_nb_lignes(); i++) {
@@ -197,19 +186,23 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
                     utilite += state.get_g()[i][j] * Utility_aux(i,j);
                 }
             }
-
-            /*System.out.println("Vérification heuristique");
-            for (int i = 0; i < get_nb_lignes(); i++) {
-                for (int j = 0; j < get_nb_colonnes(); j++) {
-                    System.out.print(Utility_aux(i,j) + " ");
-                }
-                System.out.println();
-            }*/
-
-            //System.out.println("TEST GetUtility " + utilite);
             return -utilite;
         }
     }
+
+    /*@Override
+    public double getUtility(Paire<Integer[][], Boolean> state, boolean player) {
+        if (isTerminal(state)){
+            for (int i = 0; i < get_nb_lignes(); i++) {
+                for (int j = 0; j < get_nb_colonnes(); j++) {
+                    if (victoire(state.get_g(), player, i,j)) return 1; // Le joueur gagne
+                    if (victoire(state.get_g(), !player, i,j)) return -1; // L'adversaire gagne
+                }
+            }
+            return 0; // Cas d'égalité
+        }
+        return 0;
+    }*/
 
     @Override
     public int getDepth() {

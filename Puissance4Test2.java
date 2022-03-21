@@ -29,8 +29,8 @@ public class Puissance4Test2 {
         Paire<Integer, Integer> choix_joueur = new Paire<Integer, Integer>(-1,-1);
 
         List<Integer> myArrayList = new ArrayList<Integer>();
-        MinimaxDepthSearch<Paire<Integer[][], Boolean>, Paire<Integer, Integer>> minimaxDepthSearch =
-                MinimaxDepthSearch.createFor(game);
+        AlphaBetaDepth<Paire<Integer[][], Boolean>, Paire<Integer, Integer>> alphaBetaDepth =
+                AlphaBetaDepth.createFor(game);
 
 
         state = game.getInitialState();
@@ -42,7 +42,7 @@ public class Puissance4Test2 {
 
         if (!premier_joueur) {
             System.out.println("Ordinateur, que voulez-vous faire?");
-            action = minimaxDepthSearch.makeDecision(state);
+            action = alphaBetaDepth.makeDecision(state);
             System.out.println("L'ordinateur place un pion en (" + action.get_g() + "," + action.get_d() + ").");
             state.get_g()[action.get_g()][action.get_d()] = -1;
             state.set_d(!state.get_d());
@@ -106,7 +106,7 @@ public class Puissance4Test2 {
                 System.out.println("Grille :\n");
                 game.AffichageState(state);
                 System.out.println("Ordinateur, que voulez-vous faire?");
-                action = minimaxDepthSearch.makeDecision(state);
+                action = alphaBetaDepth.makeDecision(state);
                 System.out.println("L'ordinateur place un pion en (" + action.get_g() + "," + action.get_d() + ").");
                 state.get_g()[action.get_g()][action.get_d()] = -1;
                 state.set_d(!state.get_d());
