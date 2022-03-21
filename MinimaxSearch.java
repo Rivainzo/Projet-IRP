@@ -23,13 +23,11 @@ public class MinimaxSearch<STATE, ACTION> implements
 		ACTION result = null ;
 		double resultValue = Double.NEGATIVE_INFINITY;
 		boolean p = true;
-		System.out.println("TEST " + state);
 		for (ACTION action : game.getActions(state)) {
 	        double value = minValue(game.getResult(state, action), !p);
 		 if (value > resultValue) {
 		   result = action;
 		   resultValue = value;
-		   System.out.println("result value " + resultValue);
 		 }
 		}
 		return result;

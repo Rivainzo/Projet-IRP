@@ -181,14 +181,14 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
         }
         else {
 
-            System.out.println("----------------------------------------");
+            /*System.out.println("----------------------------------------");
             for (int i = 0; i < get_nb_lignes(); i++) {
                 for (int j = 0; j < get_nb_colonnes(); j++) {
                     System.out.print(((state.get_g()[i][j] >= 0) ? " " : "") + state.get_g()[i][j] + " ");
                 }
                 System.out.println();
             }
-            System.out.println();
+            System.out.println();*/
 
             double utilite = 0;
             for (int i = 0; i < get_nb_lignes(); i++) {
@@ -205,7 +205,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
                 System.out.println();
             }*/
 
-            System.out.println("TEST GetUtility " + utilite);
+            //System.out.println("TEST GetUtility " + utilite);
             return utilite;
         }
     }

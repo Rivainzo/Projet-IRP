@@ -21,17 +21,13 @@ public class MinimaxDepthSearch<STATE, ACTION> implements
         ACTION result = null ;
         double resultValue = Double.NEGATIVE_INFINITY;
         boolean p = true;
-        System.out.println("TEST " + state);
-        System.out.println("TEST " + game.getActions(state).isEmpty());
         for (ACTION action : game.getActions(state)) {
-            System.out.println("TEST");
             double value = minValue(game.getResult(state, action), !p, game.getDepth());
             if (value > resultValue) {
                 result = action;
                 resultValue = value;
             }
         }
-        System.out.println("result value " + resultValue);
         return result;
     }
 
