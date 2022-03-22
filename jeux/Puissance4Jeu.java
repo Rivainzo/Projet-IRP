@@ -1,15 +1,4 @@
-/*package jeux;
-
-import jeux.MinimaxDepthSearch;
-import jeux.MinimaxSearch;
-import jeux.AlphaBetaDepth;
-import jeux.Puissance4;
-import jeux.Paire;*/
-
 import java.util.*;
-
-// Paire<Integer[][], Boolean>
-// Paire<Integer, Integer>
 
 public class Puissance4Jeu {
     public static void main(String[] args) {
@@ -69,26 +58,11 @@ public class Puissance4Jeu {
         while (!game.isTerminal(state)){
             boolean choix_valide = false;
             while (!choix_valide){
-                //System.out.println("Joueur, où voulez-vous ajouter un pion?");
                 System.out.println("Joueur, dans quelle colonne voulez-vous ajouter un pion?");
                 scanner = new Scanner(System.in);
-                /*int choix_joueur_ligne = scanner.nextInt();*/
                 int choix_joueur_colonne = scanner.nextInt();
 
-                /*String input = scanner.nextLine();
-                String[] numbersStr = input.split(" ");
-
-                //System.out.println(numbersStr);
-
-                int choix_joueur_colonne = Integer.parseInt(numbersStr[0]);
-                int choix_joueur_ligne = Integer.parseInt(numbersStr[1]);
-                //System.out.println(choix_joueur_ligne + " " + choix_joueur_colonne);*/
-
-                //choix_joueur = new Paire<>(-1, choix_joueur_colonne);
-                //choix_valide = game.getActions(state).contains(choix_joueur);
                 choix_valide = false;
-
-                //System.out.println(game.getActions(state).contains(choix_joueur));
 
                 for (Paire<Integer, Integer> x : game.getActions(state)) {
                     if (x.get_d() == choix_joueur_colonne) {
@@ -96,7 +70,6 @@ public class Puissance4Jeu {
                         choix_valide = true;
                         break;
                     }
-                    //choix_valide = choix_valide || (choix_joueur.get_g() == x.get_g() && choix_joueur.get_d() == x.get_d());
                 }
 
 

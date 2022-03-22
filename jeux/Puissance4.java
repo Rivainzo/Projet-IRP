@@ -1,7 +1,3 @@
-/*package jeux;
-
-import jeux.Game;
-import jeux.Paire;*/
 import java.util.*;
 
 public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integer, Integer>> {
@@ -36,10 +32,8 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
     public Paire<Integer[][], Boolean> getInitialState() {
         Integer[][] tab = new Integer[_init_state.get_g().length][];
         for (int i = 0; i < _init_state.get_g().length; i++) {
-            //tab[i] = Arrays.copyOf(_init_state.get_g()[i], _init_state.get_g()[i].length);
             tab[i] = _init_state.get_g()[i].clone();
         }
-        //Integer[][] tab = _init_state.get_g().clone();
         Paire<Integer[][], Boolean> res = new Paire<>(tab, _init_state.get_d());
         return res;
     }
@@ -47,14 +41,6 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
     @Override
     public List<Paire<Integer, Integer>> getActions(Paire<Integer[][], Boolean> state) {
         List<Paire<Integer, Integer>> myArrayList = new ArrayList<Paire<Integer, Integer>>();
-
-        /*for (int i = 0; i < get_nb_lignes(); i++) {
-            for (int j = 0; j < get_nb_colonnes(); j++) {
-                System.out.print(((state.get_g()[i][j] >= 0) ? " " : "") + state.get_g()[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();*/
 
         for (int j = 0; j < get_nb_colonnes(); j++) {
             // On regarde s'il est possible d'ajouter un pion dans la colonne j
@@ -64,7 +50,6 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
                     i -= 1;
                 }
                 Paire<Integer, Integer> action = new Paire<Integer, Integer>(i,j);
-                //System.out.println("TEST GetActions 2 Action (" + i + ", " + j +")");
                 myArrayList.add(action);
             }
         }
@@ -76,16 +61,12 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
     public Paire<Integer[][], Boolean> getResult(Paire<Integer[][], Boolean> state, Paire<Integer, Integer> action) {
         Integer[][] nouvelle_grille = new Integer[state.get_g().length][];
         for (int i = 0; i < state.get_g().length; i++) {
-            //nouvelle_grille[i] = Arrays.copyOf(state.get_g()[i], state.get_g()[i].length);
             nouvelle_grille[i] = state.get_g()[i].clone();
 
         }
-        //Integer[][] nouvelle_grille = state.get_g().clone();
         int valeur = (state.get_d()) ? 1 : -1;
         nouvelle_grille[action.get_g()][action.get_d()] = valeur;
         Paire<Integer[][], Boolean> res = new Paire<>(nouvelle_grille, !state.get_d());
-        /*state.set_g(nouvelle_grille);
-        state.set_d(!state.get_d());*/
         return res;
     }
 
@@ -167,8 +148,6 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
     }
 
     private double Utility_aux(int i, int j) { // Donne la valeur d'un endroit de la grille en fonction du nombre de possibilité de victoire qu'il donne
-        /*System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS  " + (Utility_aux_horizontale(i,j) + Utility_aux_verticale(i,j)
-                + Utility_aux_diag_ascendante(i,j) + Utility_aux_diag_descendante(i,j)));*/
         return Utility_aux_horizontale(i,j) + Utility_aux_verticale(i,j)
                 + Utility_aux_diag_ascendante(i,j) + Utility_aux_diag_descendante(i,j);
     }
@@ -235,17 +214,8 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             }
             if (k1 + k2 <= 3) nb_voisins_dd = 0;
 
-            //int // Plus le nombre de voisin sur une direction est important plus la case à de la valeur
-            //return coeff_ajustement * Utility_aux(i,j) + nb_voisins_h + nb_voisins_v + nb_voisins_da + nb_voisins_dd;
-            //return coeff_ajustement * Utility_aux(i,j) + Math.pow(nb_voisins_h,2) + Math.pow(nb_voisins_v,2) + Math.pow(nb_voisins_da,2) + Math.pow(nb_voisins_dd,2);
         }
         return coeff_ajustement * Utility_aux(i,j) + Math.pow(nb_voisins_h,200) + Math.pow(nb_voisins_v,2) + Math.pow(nb_voisins_da,2) + Math.pow(nb_voisins_dd,2);
-        /*else if (state.get_g()[i][j] == -1) {
-
-
-            return coeff_ajustement * Utility_aux(i,j) + Math.pow(nb_voisins_h,2) + Math.pow(nb_voisins_v,2) + Math.pow(nb_voisins_da,2) + Math.pow(nb_voisins_dd,2);
-        }*/
-
     }
 
     @Override
@@ -265,27 +235,12 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             double utilite = 0;
             for (int i = 0; i < get_nb_lignes(); i++) {
                 for (int j = 0; j < get_nb_colonnes(); j++) {
-                    //utilite += state.get_g()[i][j] * Utility_aux(i,j);
                     utilite += (player ? -1 : 1) * state.get_g()[i][j] * Utility_aux_ajustee(state,i,j, player);
                 }
             }
             return utilite;
         }
     }
-
-    /*@Override
-    public double getUtility(Paire<Integer[][], Boolean> state, boolean player) {
-        if (isTerminal(state)){
-            for (int i = 0; i < get_nb_lignes(); i++) {
-                for (int j = 0; j < get_nb_colonnes(); j++) {
-                    if (victoire(state.get_g(), player, i,j)) return 1; // Le joueur gagne
-                    if (victoire(state.get_g(), !player, i,j)) return -1; // L'adversaire gagne
-                }
-            }
-            return 0; // Cas d'égalité
-        }
-        return 0;
-    }*/
 
     @Override
     public int getDepth() {
@@ -299,13 +254,11 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
         System.out.println();
         for (int i = get_nb_lignes()-1; i >= 0; i-=1) {
             System.out.println("+---".repeat(get_nb_colonnes()) + "+");
-            //System.out.println("|   ".repeat(get_nb_colonnes()) + "|");
             for (int j = 0; j < get_nb_colonnes(); j++) {
                 String joueur = (state.get_g()[i][j] > 0) ? "x" : "o";
                 System.out.print("| " + ((state.get_g()[i][j] == 0) ? " " : joueur) + " ");
             }
             System.out.println("| " + i);
-            //System.out.println("|   ".repeat(get_nb_colonnes()) + "|");
         }
         System.out.println("+---".repeat(get_nb_colonnes()) + "+\n");
         System.out.println("Au tour " + ((state.get_d()) ? "du joueur" : "de l'ordinateur") + ".");

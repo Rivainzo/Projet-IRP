@@ -1,7 +1,3 @@
-/*package jeux;
-
-import jeux.Game;*/
-
 import java.util.*;
 
 class Nim implements Game<Integer, Integer> {

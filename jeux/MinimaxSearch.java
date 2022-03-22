@@ -1,8 +1,3 @@
-/*package jeux;
-
-import jeux.Game;*/
-
-
 public class MinimaxSearch<STATE, ACTION> implements
 		Search<STATE, ACTION> {
 
@@ -36,7 +31,7 @@ public class MinimaxSearch<STATE, ACTION> implements
 	}
 
 	public double maxValue(STATE state, boolean player) {
-	    // calcule une valeur d'utilité pour un noued max
+	    // calcule une valeur d'utilité pour un noeud max
 		assert (player);
 		expandedNodes++;
 		if (game.isTerminal(state))
@@ -53,11 +48,9 @@ public class MinimaxSearch<STATE, ACTION> implements
 	        assert (!(player));
 	        expandedNodes++;
 		if (game.isTerminal(state)){
-			//System.out.println("TEST minValue " + game.getUtility(state, player));
 		    return game.getUtility(state, player);}
 		double value = Double.POSITIVE_INFINITY;
 		for (ACTION action : game.getActions(state)) {
-			//System.out.println("TEST minValue " + game.getResult(state, action));
 			value = Math.min(value,
 					maxValue(game.getResult(state, action), !player));
 		}

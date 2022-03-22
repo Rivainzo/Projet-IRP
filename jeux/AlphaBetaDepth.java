@@ -1,5 +1,3 @@
-//package jeux;
-//import jeux.Game;
 public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
     private Game<STATE, ACTION> game;
@@ -16,7 +14,7 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
 
     public double maxValue(STATE state, boolean player, int depth, double alpha, double beta) {
-        // calcule une valeur d'utilité pour un noued max
+        // calcule une valeur d'utilité pour un noeud max
         assert (player);
         expandedNodes++;
         if (game.isTerminal(state) || depth <= 0)

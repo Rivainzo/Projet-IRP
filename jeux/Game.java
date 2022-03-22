@@ -1,5 +1,3 @@
-//package jeux;
-
 import java.util.Hashtable;
 import java.util.List;
 

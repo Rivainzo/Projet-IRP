@@ -1,21 +1,3 @@
-//package jeux;
-
-import java.util.List;
-
-
-
-/*import jeux.Paire;
-import jeux.AlphaBetaDepth;
-import jeux.Puissance4;
-import jeux.MinimaxSearch;
-import jeux.MinimaxDepthSearch;
-import jeux.AlphaBeta;
-import jeux.AlphaBetaDepth;*/
-
-//Game<Paire<Integer[][], Boolean>, Paire<Integer, Integer>>
-// Paire<Integer[][], Boolean>
-// Paire<Integer, Integer>
-
 public class Puissance4Test {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-JFLAGS = -g -classpath .
+JFLAGS = -g -classpath ./jeux
 
 JC = javac
 JVM = java
@@ -9,21 +9,21 @@ JVM = java
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-      Game.java \
-	Search.java \
-      AlphaBeta.java \
-      AlphaBetaDepth.java \
-      AlphaBetaMemoire.java \
-      MinimaxDepthSearch.java \
-      MinimaxSearch.java \
-      Nim.java \
-      NimTest.java \
-      NimJeu.java \
-      Puissance4.java \
-      Puissance4Test.java \
-      Puissance4Jeu.java \
-      Paire.java \
-      Triple.java
+      jeux/Game.java \
+	  jeux/Search.java \
+      jeux/AlphaBeta.java \
+      jeux/AlphaBetaDepth.java \
+      jeux/AlphaBetaMemoire.java \
+      jeux/MinimaxDepthSearch.java \
+      jeux/MinimaxSearch.java \
+      jeux/Nim.java \
+      jeux/NimTest.java \
+      jeux/NimJeu.java \
+      jeux/Puissance4.java \
+      jeux/Puissance4Test.java \
+      jeux/Puissance4Jeu.java \
+      jeux/Paire.java \
+      jeux/Triple.java
 
 
 default: classes
@@ -31,16 +31,16 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 clean:
-	$(RM) *.class
+	$(RM) jeux/*.class
 
 nim:
-	$(JVM) -cp . NimJeu
+	$(JVM) -cp ./jeux NimJeu
 
 nim_test:
-	$(JVM) -cp . NimTest
+	$(JVM) -cp ./jeux NimTest
 
 puissance4:
-	$(JVM) -cp . Puissance4Jeu
+	$(JVM) -cp ./jeux Puissance4Jeu
 
 puissance4_test:
-	$(JVM) -cp . Puissance4Test
+	$(JVM) -cp ./jeux Puissance4Test

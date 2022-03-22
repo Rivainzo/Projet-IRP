@@ -1,17 +1,9 @@
-//package jeux;
-
-//import jeux.Game;
-
 import java.util.Hashtable;
-//import jeux.Triple;
 
 public class AlphaBetaMemoire<STATE, ACTION> implements Search<STATE, ACTION>{
 
     private Game<STATE, ACTION> game;
     private int expandedNodes;
-
-    //private Hashtable<Long, Triple<Double, Double, Integer>> _table = new Hashtable<>();
-
 
     public static <STATE, ACTION> AlphaBetaMemoire<STATE, ACTION>
     createFor(Game<STATE, ACTION> game) {
@@ -35,7 +27,6 @@ public class AlphaBetaMemoire<STATE, ACTION> implements Search<STATE, ACTION>{
         if (table.containsKey(hash_state) && table.get(hash_state).get_d() <= depth) {
             alpha = table.get(hash_state).get_g();
             beta = table.get(hash_state).get_m();
-            //return game.getUtility(state, player);
         }
         double value = Double.NEGATIVE_INFINITY;
         for (ACTION action : game.getActions(state)) {
@@ -62,7 +53,6 @@ public class AlphaBetaMemoire<STATE, ACTION> implements Search<STATE, ACTION>{
         if (table.containsKey(hash_state) && table.get(hash_state).get_d() <= depth) {
             alpha = table.get(hash_state).get_g();
             beta = table.get(hash_state).get_m();
-            //return game.getUtility(state, player);
         }
         double value = Double.POSITIVE_INFINITY;
         for (ACTION action : game.getActions(state)) {

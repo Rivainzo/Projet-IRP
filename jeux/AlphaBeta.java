@@ -1,5 +1,3 @@
-//package jeux;
-
 public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
 
     private Game<STATE, ACTION> game;
@@ -16,7 +14,7 @@ public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
 
 
     public double maxValue(STATE state, boolean player, double alpha, double beta) {
-        // calcule une valeur d'utilité pour un noued max
+        // calcule une valeur d'utilité pour un noeud max
         assert (player);
         expandedNodes++;
         if (game.isTerminal(state))
