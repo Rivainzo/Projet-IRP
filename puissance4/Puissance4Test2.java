@@ -1,7 +1,8 @@
-package jeux;
+package jeux.puissance4;
 
 import jeux.MinimaxDepthSearch;
 import jeux.MinimaxSearch;
+import jeux.AlphaBetaDepth;
 import jeux.puissance4.Puissance4;
 import jeux.Paire;
 
@@ -47,9 +48,13 @@ public class Puissance4Test2 {
             state.get_g()[action.get_g()][action.get_d()] = -1;
             state.set_d(!state.get_d());
             if (game.isTerminal(state)){
-                if (game.victoire(state.get_g(), false, action.get_g(), action.get_d())) {
-                    System.out.println("L'ordinateur a gagné la partie.");
-                    return;
+                for (int i = 0; i < game.get_nb_lignes(); i++) {
+                    for (int j = 0; j < game.get_nb_colonnes(); j++) {
+                        if (game.victoire(state.get_g(), false, i, j)) {
+                            System.out.println("L'ordinateur a gagné la partie.");
+                            return;
+                        }
+                    }
                 }
                 System.out.println("Egalité, aucun gagnant dans cette partie.");
                 return;
@@ -95,11 +100,15 @@ public class Puissance4Test2 {
             state.get_g()[choix_joueur.get_g()][choix_joueur.get_d()] = 1;
             state.set_d(!state.get_d());
             if (game.isTerminal(state)){
-                if (game.victoire(state.get_g(), true, choix_joueur.get_g(), choix_joueur.get_d())) {
-                    System.out.println("Vous a gagné la partie, félicitation !");
-                    return;
+                for (int i = 0; i < game.get_nb_lignes(); i++) {
+                    for (int j = 0; j < game.get_nb_colonnes(); j++) {
+                        if (game.victoire(state.get_g(), true, i, j)) {
+                            System.out.println("Vous a gagné la partie, félicitation!");
+                            return;
+                        }
+                    }
                 }
-                System.out.println("Egalité, aucun gagnant dans cette partie.\n");
+                System.out.println("Egalité, aucun gagnant dans cette partie C FO.\n");
                 return;
             }
             else {
@@ -111,11 +120,15 @@ public class Puissance4Test2 {
                 state.get_g()[action.get_g()][action.get_d()] = -1;
                 state.set_d(!state.get_d());
                 if (game.isTerminal(state)){
-                    if (game.victoire(state.get_g(), false, action.get_g(), action.get_d())) {
-                        System.out.println("L'ordinateur a gagné la partie.");
-                        return;
+                    for (int i = 0; i < game.get_nb_lignes(); i++) {
+                        for (int j = 0; j < game.get_nb_colonnes(); j++) {
+                            if (game.victoire(state.get_g(), false, i, j)) {
+                                System.out.println("L'ordinateur a gagné la partie.");
+                                return;
+                            }
+                        }
                     }
-                    System.out.println("Egalité, aucun gagnant dans cette partie.");
+                    System.out.println("Egalité, aucun gagnant dans cette partie.\n");
                     return;
                 }
                 else {

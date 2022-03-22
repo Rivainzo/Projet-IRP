@@ -1,6 +1,7 @@
 package jeux.nim;
 
 import jeux.Game;
+import jeux.Paire;
 
 import java.util.*;
 
@@ -60,5 +61,20 @@ class Nim implements Game<Integer, Integer> {
     public int getDepth() {
         return _depth;
     }
+
+    @Override
+    public Hashtable<Integer, Long> get_hashcode_joueurMax() {return null;}
+
+    @Override
+    public Hashtable<Integer, Long> get_hashcode_joueurMin() {return null;}
+
+    @Override
+    public void set_hashcode_joueurMax() {return;};
+
+    @Override
+    public void set_hashcode_joueurMin() {return;};
+
+    @Override
+    public long ZobristHashState(Integer state) {return 0;}
 }
 
