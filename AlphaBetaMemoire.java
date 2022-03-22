@@ -61,7 +61,8 @@ public class AlphaBetaMemoire<STATE, ACTION> implements Search<STATE, ACTION>{
         }
         long hash_state = game.ZobristHashState(state);
         if (_table.containsKey(hash_state) && _table.get(hash_state).get_d() <= depth) {
-            return _alpha = _table.get()
+            _alpha = _table.get(hash_state).get_g();
+            _beta = _table.get(hash_state).get_m();
         }
         double value = Double.POSITIVE_INFINITY;
         for (ACTION action : game.getActions(state)) {
@@ -70,8 +71,10 @@ public class AlphaBetaMemoire<STATE, ACTION> implements Search<STATE, ACTION>{
             if (value < getAlpha()) return value;
             _beta = Math.min(_beta, value);
         }
-        Triple<Double, Double, Integer> alpha_beta_depth = new Triple<>(getAlpha(), getBeta(), depth);
-        _table.put(hash_state, alpha_beta_depth);
+        if (_table.get(hash_state).get_d() > depth) {
+            Triple<Double, Double, Integer> alpha_beta_depth = new Triple<>(getAlpha(), getBeta(), depth);
+            _table.put(hash_state, alpha_beta_depth);
+        }
         return value;
     }
 
