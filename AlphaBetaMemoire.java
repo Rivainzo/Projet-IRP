@@ -1,10 +1,10 @@
-package jeux;
+//package jeux;
 
-import jeux.Game;
+//import jeux.Game;
 
 import java.util.Hashtable;
 import java.util.Random;
-import jeux.tuple.Triple;
+//import jeux.Triple;
 
 public class AlphaBetaMemoire<STATE, ACTION> implements Search<STATE, ACTION>{
 

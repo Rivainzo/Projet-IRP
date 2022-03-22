@@ -1,4 +1,4 @@
-package jeux;
+//package jeux;
 
 public class Triple<GAUCHE, MILIEU, DROITE> {
     GAUCHE _g;

@@ -1,14 +1,16 @@
-package jeux.puissance4;
+//package jeux;
 
 import java.util.List;
 
-import jeux.Paire;
+
+
+/*import jeux.Paire;
 import jeux.AlphaBetaDepth;
 import jeux.Puissance4;
 import jeux.MinimaxSearch;
 import jeux.MinimaxDepthSearch;
 import jeux.AlphaBeta;
-import jeux.AlphaBetaDepth;
+import jeux.AlphaBetaDepth;*/
 
 //Game<Paire<Integer[][], Boolean>, Paire<Integer, Integer>>
 // Paire<Integer[][], Boolean>

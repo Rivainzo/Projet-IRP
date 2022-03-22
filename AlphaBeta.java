@@ -1,6 +1,4 @@
-package jeux;
-
-import jeux.Game;
+//package jeux;
 
 public class AlphaBeta<STATE, ACTION> implements Search<STATE, ACTION>{
 

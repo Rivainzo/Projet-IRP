@@ -1,4 +1,4 @@
-package jeux;
+/*package jeux;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import jeux.Nim;
 import jeux.MinimaxSearch;
 import jeux.MinimaxDepthSearch;
 import jeux.AlphaBeta;
-import jeux.AlphaBetaDepth;
+import jeux.AlphaBetaDepth;*/
 
 public class NimTest {
 

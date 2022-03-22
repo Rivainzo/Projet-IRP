@@ -1,8 +1,8 @@
-package jeux;
+/*package jeux;
 
 import jeux.MinimaxDepthSearch;
 import jeux.AlphaBetaDepth;
-import jeux.MinimaxSearch;
+import jeux.MinimaxSearch;*/
 
 import java.util.*;
 

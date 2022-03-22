@@ -1,7 +1,7 @@
-package jeux;
+/*package jeux;
 
 import jeux.Game;
-import jeux.Paire;
+import jeux.Paire;*/
 import java.util.*;
 
 public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integer, Integer>> {

@@ -1,4 +1,4 @@
-package jeux;
+//package jeux;
 
 
 public interface Search<STATE, ACTION> {

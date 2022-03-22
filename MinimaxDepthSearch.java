@@ -1,6 +1,6 @@
-package jeux;
+/*package jeux;
 
-import jeux.Game;
+import jeux.Game;*/
 
 public class MinimaxDepthSearch<STATE, ACTION> implements
         Search<STATE, ACTION>  {

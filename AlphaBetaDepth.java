@@ -1,5 +1,5 @@
-package jeux;
-import jeux.Game;
+//package jeux;
+//import jeux.Game;
 public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
     private Game<STATE, ACTION> game;

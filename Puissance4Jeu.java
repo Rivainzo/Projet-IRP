@@ -1,10 +1,10 @@
-package jeux;
+/*package jeux;
 
 import jeux.MinimaxDepthSearch;
 import jeux.MinimaxSearch;
 import jeux.AlphaBetaDepth;
 import jeux.Puissance4;
-import jeux.Paire;
+import jeux.Paire;*/
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package jeux;
+//package jeux;
 
 public class Paire<GAUCHE, DROITE> {
     GAUCHE _g;
