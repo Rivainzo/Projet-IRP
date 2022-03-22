@@ -1,14 +1,15 @@
-package jeux.nim;
+package jeux;
 
 import jeux.MinimaxDepthSearch;
+import jeux.AlphaBetaDepth;
 import jeux.MinimaxSearch;
 
 import java.util.*;
 
-public class NimTestDeux {
+public class NimJeu {
 
     public static void main(String[] args) {
-        Nim game = new Nim(20, 3);
+        Nim game = new Nim(20, 5);
         System.out.println("Nombre d'allumettes initial : " + 20 + "\n");
         Scanner scanner = new Scanner(System.in);
         int state;
@@ -18,8 +19,12 @@ public class NimTestDeux {
         List<Integer> myArrayList = new ArrayList<Integer>();
         /*MinimaxSearch<Integer, Integer> minimaxSearch =
                 MinimaxSearch.createFor(game);*/
-        MinimaxDepthSearch<Integer, Integer> minimaxDepthSearch =
-                MinimaxDepthSearch.createFor(game);
+        /*MinimaxDepthSearch<Integer, Integer> minimaxDepthSearch =
+                MinimaxDepthSearch.createFor(game);*/
+        AlphaBetaDepth<Integer, Integer> alphaBetaDepth =
+                AlphaBetaDepth.createFor(game);
+        /*MinimaxDepthSearch<Integer, Integer> alphaBetaDepth =
+                MinimaxDepthSearch.createFor(game);*/
 
         System.out.println("Voulez-vous jouer en premier ? (Oui / Non)");
         commencer = scanner.nextLine();
@@ -35,7 +40,7 @@ public class NimTestDeux {
 
         if (!premier_joueur) {
             System.out.println("Ordinateur, que voulez-vous faire?");
-            action = minimaxDepthSearch.makeDecision(state);
+            action = alphaBetaDepth.makeDecision(state);
             System.out.println("L'ordinateur retire " + action + " allumette(s)");
             state -= action;
             if (game.isTerminal(state)){
@@ -66,7 +71,7 @@ public class NimTestDeux {
             else {
                 System.out.println("Nombre d'allumettes restantes : " + state + "\n");
                 System.out.println("Ordinateur, que voulez-vous faire?");
-                action = minimaxDepthSearch.makeDecision(state);
+                action = alphaBetaDepth.makeDecision(state);
                 System.out.println("L'ordinateur retire " + action + " allumette(s)");
                 state -= action;
                 if (game.isTerminal(state)){

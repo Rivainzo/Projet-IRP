@@ -1,5 +1,7 @@
 package jeux;
 
+import jeux.Game;
+
 
 public class MinimaxSearch<STATE, ACTION> implements
 		Search<STATE, ACTION> {

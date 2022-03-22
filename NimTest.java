@@ -1,9 +1,9 @@
-package jeux.nim;
+package jeux;
 
 import java.util.List;
 
 import jeux.AlphaBetaDepth;
-import jeux.nim.Nim;
+import jeux.Nim;
 import jeux.MinimaxSearch;
 import jeux.MinimaxDepthSearch;
 import jeux.AlphaBeta;

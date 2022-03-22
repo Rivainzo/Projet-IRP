@@ -1,9 +1,9 @@
-package jeux.puissance4;
+package jeux;
 
 import jeux.MinimaxDepthSearch;
 import jeux.MinimaxSearch;
 import jeux.AlphaBetaDepth;
-import jeux.puissance4.Puissance4;
+import jeux.Puissance4;
 import jeux.Paire;
 
 import java.util.*;
@@ -11,7 +11,7 @@ import java.util.*;
 // Paire<Integer[][], Boolean>
 // Paire<Integer, Integer>
 
-public class Puissance4Test2 {
+public class Puissance4Jeu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String commencer;

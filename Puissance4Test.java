@@ -4,7 +4,7 @@ import java.util.List;
 
 import jeux.Paire;
 import jeux.AlphaBetaDepth;
-import jeux.puissance4.Puissance4;
+import jeux.Puissance4;
 import jeux.MinimaxSearch;
 import jeux.MinimaxDepthSearch;
 import jeux.AlphaBeta;

@@ -1,7 +1,6 @@
-package jeux.nim;
+package jeux;
 
 import jeux.Game;
-import jeux.Paire;
 
 import java.util.*;
 

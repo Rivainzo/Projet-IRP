@@ -1,5 +1,5 @@
 package jeux;
-
+import jeux.Game;
 public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
     private Game<STATE, ACTION> game;
@@ -25,7 +25,7 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
     }
 
 
-    public double maxValue(STATE state, boolean player, int depth) {
+    public double maxValue(STATE state, boolean player, int depth, double alpha, double beta) {
         // calcule une valeur d'utilité pour un noued max
         assert (player);
         expandedNodes++;
@@ -34,14 +34,14 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
         double value = Double.NEGATIVE_INFINITY;
         for (ACTION action : game.getActions(state)) {
             value = Math.max(value,
-                    minValue(game.getResult(state, action), !player, depth-1));
-            if (value > getBeta()) return value;
-            _alpha = Math.max(_alpha,value);
+                    minValue(game.getResult(state, action), !player, depth-1, alpha, beta));
+            if (value > beta) return value;
+            alpha = Math.max(alpha,value);
         }
         return value;
     }
 
-    public double minValue(STATE state, boolean player, int depth) {
+    public double minValue(STATE state, boolean player, int depth, double alpha, double beta) {
         // calcule une valeur d'utilité pour un noeud min
         assert (!(player));
         expandedNodes++;
@@ -51,9 +51,9 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
         double value = Double.POSITIVE_INFINITY;
         for (ACTION action : game.getActions(state)) {
             value = Math.min(value,
-                    maxValue(game.getResult(state, action), !player, depth-1));
-            if (value < getAlpha()) return value;
-            _beta = Math.min(_beta, value);
+                    maxValue(game.getResult(state, action), !player, depth-1, alpha, beta));
+            if (value < alpha) return value;
+            beta = Math.min(beta, value);
         }
         return value;
     }
@@ -65,7 +65,7 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
         double resultValue = Double.NEGATIVE_INFINITY;
         boolean p = true;
         for (ACTION action : game.getActions(state)) {
-            double value = minValue(game.getResult(state, action), !p, game.getDepth());
+            double value = minValue(game.getResult(state, action), !p, game.getDepth(), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             if (value > resultValue) {
                 result = action;
                 resultValue = value;
