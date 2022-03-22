@@ -10,7 +10,7 @@ JVM = java
 
 CLASSES = \
       Game.java \
-	  Search.java \
+	Search.java \
       AlphaBeta.java \
       AlphaBetaDepth.java \
       AlphaBetaMemoire.java \
