@@ -1,4 +1,4 @@
-JFLAGS = -g -classpath ./jeux
+JFLAGS = -g -classpath .
 
 JC = javac
 
@@ -8,19 +8,19 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-      ./Game.java \
-	  ./search/Search.java \
-      ./search/AlphaBeta.java \
-      search/AlphaBetaDepth.java \
-      search/AlphaBetaMemoire.java \
-      search/MinimaxDepthSearch.java \
-      search/MinimaxSearch.java \
-      nim/Nim.java \
-      nim/NimTest.java \
-      nim/NimJeu.java \
-      puissance4/Puissance4.java \
-      puissance4/Puissance4Test.java \
-      puissance4/Puissance4Jeu.java
+      Game.java \
+      Search.java \
+      AlphaBeta.java \
+      AlphaBetaDepth.java \
+      AlphaBetaMemoire.java \
+      MinimaxDepthSearch.java \
+      MinimaxSearch.java \
+      Nim.java \
+      NimTest.java \
+      NimJeu.java \
+      Puissance4.java \
+      Puissance4Test.java \
+      Puissance4Jeu.java 
 
 
 default: classes
