@@ -57,7 +57,7 @@ public class NimTest {
         System.out.println("Machine player, what is your action?");
         //
         action = alphaBetaDepth.makeDecision(state);
-        System.out.println("Metrics for AlphaBeta : " + alphaBetaDepth.getMetrics());
+        System.out.println("Metrics for AlphaBeta with limited depth : " + alphaBetaDepth.getMetrics());
         System.out.println("Chosen action is " + action);
    }
 }

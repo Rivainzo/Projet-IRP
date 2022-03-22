@@ -29,6 +29,8 @@ public class Puissance4Test {
                 AlphaBeta.createFor(game);*/
         AlphaBetaDepth<Paire<Integer[][], Boolean>, Paire<Integer, Integer>> alphaBetaDepth =
                 AlphaBetaDepth.createFor(game);
+        /*AlphaBetaMemoire<Paire<Integer[][], Boolean>, Paire<Integer, Integer>> alphaBetaMemoire =
+                AlphaBetaMemoire.createFor(game);*/
 
         state = game.getInitialState();
         Paire<Integer, Integer> action = new Paire<Integer, Integer>(-1,-1);
@@ -60,8 +62,14 @@ public class Puissance4Test {
         System.out.println("\n\nAlphaBetaDepth:\n");
         System.out.println("Machine player, what is your action?");
         action = alphaBetaDepth.makeDecision(state);
-        System.out.println("Metrics for AlphaBeta : " + alphaBetaDepth.getMetrics());
+        System.out.println("Metrics for AlphaBeta with limited depth : " + alphaBetaDepth.getMetrics());
         System.out.println("Chosen action is (" + action.get_g() + ", " + action.get_d() + ")");
 
+        /* AlphaBetaMemoire */
+        /*System.out.println("\n\nAlphaBetaMemoire:\n");
+        System.out.println("Machine player, what is your action?");
+        action = alphaBetaMemoire.makeDecision(state);
+        System.out.println("Metrics for AlphaBeta with memory: " + alphaBetaMemoire.getMetrics());
+        System.out.println("Chosen action is (" + action.get_g() + ", " + action.get_d() + ")");*/
     }
 }

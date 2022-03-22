@@ -3,8 +3,6 @@
 public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
     private Game<STATE, ACTION> game;
-    private double _alpha = Double.NEGATIVE_INFINITY;
-    private double _beta = Double.POSITIVE_INFINITY;
     private int expandedNodes;
 
     public static <STATE, ACTION> AlphaBetaDepth<STATE, ACTION>
@@ -14,14 +12,6 @@ public class AlphaBetaDepth<STATE, ACTION> implements Search<STATE, ACTION>{
 
     public AlphaBetaDepth(Game<STATE, ACTION> game) {
         this.game = game;
-    }
-
-    public double getAlpha(){
-        return _alpha;
-    }
-
-    public double getBeta(){
-        return _beta;
     }
 
 
