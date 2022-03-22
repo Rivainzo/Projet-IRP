@@ -53,7 +53,7 @@ public class MinimaxSearch<STATE, ACTION> implements
 	        assert (!(player));
 	        expandedNodes++;
 		if (game.isTerminal(state)){
-			System.out.println("TEST minValue " + game.getUtility(state, player));
+			//System.out.println("TEST minValue " + game.getUtility(state, player));
 		    return game.getUtility(state, player);}
 		double value = Double.POSITIVE_INFINITY;
 		for (ACTION action : game.getActions(state)) {

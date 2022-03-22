@@ -1,6 +1,7 @@
 JFLAGS = -g -classpath .
 
 JC = javac
+JVM = java
 
 .SUFFIXES: .java .class
 
@@ -31,3 +32,15 @@ classes: $(CLASSES:.java=.class)
 
 clean:
 	$(RM) *.class
+
+nim:
+	$(JVM) -cp . NimJeu
+
+nim_test:
+	$(JVM) -cp . NimTest
+
+puissance4:
+	$(JVM) -cp . Puissance4Jeu
+
+puissance4_test:
+	$(JVM) -cp . Puissance4Test

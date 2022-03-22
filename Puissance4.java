@@ -93,13 +93,13 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
         int tmp = (joueur) ? 1:-1;
         if (grille[i][j] == tmp)
         {
-            int nb_horizontal = 1, nb_vertical = 1, nb_diag_ascendante = 1, nb_diag_descendate = 1;
+            int nb_horizontal = 1, nb_vertical = 1, nb_diag_ascendante = 1, nb_diag_descendante = 1;
             /* Alignement horizontal */
             int curseur_j = 1;
             /* Il suffit de regarder s'il y a trois pions à droite du point */
             while (j + curseur_j < get_nb_colonnes()-1 && grille[i][j + curseur_j] == grille[i][j]) { // On regarde les pions à droite
                 nb_horizontal++;
-                j++;
+                curseur_j++;
             }
             if (nb_horizontal >= 4) return true;
 
@@ -108,7 +108,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             /* Il suffit de regarder s'il y a trois pions au dessus du point */
             while (i + curseur_i < get_nb_lignes()-1 && grille[i + curseur_i][j] == grille[i][j]) { // On regarde les pions au dessus
                 nb_vertical++;
-                i++;
+                curseur_i++;
             }
             if (nb_vertical >= 4) return true;
 
@@ -125,7 +125,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             curseur_d = 1;
             /* Il suffit de regarder s'il y a trois pions au dessus et à gauche du point */
             while (i + curseur_d < get_nb_lignes()-1 && j - curseur_d >= 0 && grille[i + curseur_d][j - curseur_d] == grille[i][j]) { // On regarde les pions au dessus
-                nb_diag_ascendante++;
+                nb_diag_descendante++;
                 curseur_d++;
             }
             if (nb_diag_ascendante >= 4) return true;
@@ -173,9 +173,10 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
                 + Utility_aux_diag_ascendante(i,j) + Utility_aux_diag_descendante(i,j);
     }
 
-    private double Utility_aux_ajustee(Paire<Integer[][], Boolean> state, int i, int j) {
+    private double Utility_aux_ajustee(Paire<Integer[][], Boolean> state, int i, int j, boolean joueur) {
         double coeff_ajustement = 0.25;
         int nb_voisins_h = 0, nb_voisins_v = 0, nb_voisins_da = 0, nb_voisins_dd = 0; // Nombre de voisins atteignables dans une direction
+        int joueur_int = (joueur) ? 1:-1;
 
         if (state.get_g()[i][j] != 0) {
             int bord_g = Math.max(0,j-3), bord_d = Math.min(get_nb_colonnes()-1,j+3);
@@ -183,12 +184,12 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
 
             /* Direction horizontale */
             int k1 = 0;
-            while(j-k1-1 >= bord_g && state.get_g()[i][j-k1-1] != -state.get_g()[i][j]) { // On regarde à gauche du point
+            while(j-k1-1 >= bord_g && state.get_g()[i][j-k1-1] != -joueur_int) { // On regarde à gauche du point
                 nb_voisins_h += state.get_g()[i][j-k1-1];
                 k1++;
             }
             int k2 = 0;
-            while(j+k2+1 <= bord_d && state.get_g()[i][j+k2+1] != -state.get_g()[i][j]) { // On regarde à droite du point
+            while(j+k2+1 <= bord_d && state.get_g()[i][j+k2+1] != -joueur_int) { // On regarde à droite du point
                 nb_voisins_h += state.get_g()[i][j+k2+1];
                 k2++;
             }
@@ -196,12 +197,12 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
 
             /* Direction verticale */
             k1 = 0;
-            while(i-k1-1 >= bord_b && state.get_g()[i-k1-1][j] != -state.get_g()[i][j]) { // On regarde en bas du point
+            while(i-k1-1 >= bord_b && state.get_g()[i-k1-1][j] != -joueur_int) { // On regarde en bas du point
                 nb_voisins_v += state.get_g()[i-k1-1][j];
                 k1++;
             }
             k2 = 0;
-            while(i+k2+1 <= bord_h && state.get_g()[i+k2+1][j] != -state.get_g()[i][j]) { // On regarde en haut du point
+            while(i+k2+1 <= bord_h && state.get_g()[i+k2+1][j] != -joueur_int) { // On regarde en haut du point
                 nb_voisins_v += state.get_g()[i+k2+1][j];
                 k2++;
             }
@@ -210,12 +211,12 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
 
             /* Direction diagonale ascendante */
             k1 = 0;
-            while(i-k1-1 >= bord_b && j-k1-1 >= bord_g && state.get_g()[i-k1-1][j-k1-1] != -state.get_g()[i][j]) { // On regarde en bas à gauche du point
+            while(i-k1-1 >= bord_b && j-k1-1 >= bord_g && state.get_g()[i-k1-1][j-k1-1] != -joueur_int) { // On regarde en bas à gauche du point
                 nb_voisins_da += state.get_g()[i-k1-1][j-k1-1];
                 k1++;
             }
             k2 = 0;
-            while(i+k2+1 <= bord_h && j+k2+1 <= bord_d && state.get_g()[i+k2+1][j+k2+1] != -state.get_g()[i][j]) { // On regarde en haut à droite du point
+            while(i+k2+1 <= bord_h && j+k2+1 <= bord_d && state.get_g()[i+k2+1][j+k2+1] != -joueur_int) { // On regarde en haut à droite du point
                 nb_voisins_da += state.get_g()[i+k2+1][j+k2+1];
                 k2++;
             }
@@ -223,12 +224,12 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
 
             /* Direction diagonale descendante */
             k1 = 0;
-            while(i+k1+1 <= bord_h && j-k1-1 >= bord_g && state.get_g()[i+k1+1][j-k1-1] != -state.get_g()[i][j]) { // On regarde en bas à gauche du point
+            while(i+k1+1 <= bord_h && j-k1-1 >= bord_g && state.get_g()[i+k1+1][j-k1-1] != -joueur_int) { // On regarde en bas à gauche du point
                 nb_voisins_dd += state.get_g()[i+k1+1][j-k1-1];
                 k1++;
             }
             k2 = 0;
-            while(i-k2-1 >= bord_b && j+k2+1 <= bord_d && state.get_g()[i-k2-1][j+k2+1] != -state.get_g()[i][j]) { // On regarde en haut à droite du point
+            while(i-k2-1 >= bord_b && j+k2+1 <= bord_d && state.get_g()[i-k2-1][j+k2+1] != -joueur_int) { // On regarde en haut à droite du point
                 nb_voisins_dd += state.get_g()[i-k2-1][j+k2+1];
                 k2++;
             }
@@ -252,10 +253,11 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
         if (isTerminal(state)){
             for (int i = 0; i < get_nb_lignes(); i++) {
                 for (int j = 0; j < get_nb_colonnes(); j++) {
-                    if (victoire(state.get_g(), player, i,j)) return Double.POSITIVE_INFINITY; // Le joueur gagne
+                    if (victoire(state.get_g(), player, i,j)) return 100000; // Le joueur gagne
                     if (victoire(state.get_g(), !player, i,j)) return Double.NEGATIVE_INFINITY; // L'adversaire gagne
                 }
             }
+
             return 0; // Cas d'égalité
         }
         else {
@@ -264,7 +266,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
             for (int i = 0; i < get_nb_lignes(); i++) {
                 for (int j = 0; j < get_nb_colonnes(); j++) {
                     //utilite += state.get_g()[i][j] * Utility_aux(i,j);
-                    utilite += (player ? -1 : 1) * state.get_g()[i][j] * Utility_aux_ajustee(state,i,j);
+                    utilite += (player ? -1 : 1) * state.get_g()[i][j] * Utility_aux_ajustee(state,i,j, player);
                 }
             }
             return utilite;
@@ -291,6 +293,10 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
     }
 
     public void AffichageState(Paire<Integer[][], Boolean> state) {
+        for (int j = 0; j < get_nb_colonnes(); j++) {
+            System.out.print("  " + j + " ");
+        }
+        System.out.println();
         for (int i = get_nb_lignes()-1; i >= 0; i-=1) {
             System.out.println("+---".repeat(get_nb_colonnes()) + "+");
             //System.out.println("|   ".repeat(get_nb_colonnes()) + "|");
@@ -298,7 +304,7 @@ public class Puissance4 implements Game<Paire<Integer[][], Boolean>, Paire<Integ
                 String joueur = (state.get_g()[i][j] > 0) ? "x" : "o";
                 System.out.print("| " + ((state.get_g()[i][j] == 0) ? " " : joueur) + " ");
             }
-            System.out.println("|");
+            System.out.println("| " + i);
             //System.out.println("|   ".repeat(get_nb_colonnes()) + "|");
         }
         System.out.println("+---".repeat(get_nb_colonnes()) + "+\n");

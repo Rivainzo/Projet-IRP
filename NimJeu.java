@@ -21,10 +21,11 @@ public class NimJeu {
                 MinimaxSearch.createFor(game);*/
         /*MinimaxDepthSearch<Integer, Integer> minimaxDepthSearch =
                 MinimaxDepthSearch.createFor(game);*/
+        /*AlphaBeta<Integer, Integer> alphaBeta =
+                AlphaBeta.createFor(game);*/
         AlphaBetaDepth<Integer, Integer> alphaBetaDepth =
                 AlphaBetaDepth.createFor(game);
-        /*MinimaxDepthSearch<Integer, Integer> alphaBetaDepth =
-                MinimaxDepthSearch.createFor(game);*/
+
 
         System.out.println("Voulez-vous jouer en premier ? (Oui / Non)");
         commencer = scanner.nextLine();
